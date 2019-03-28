@@ -8,7 +8,9 @@ const sourceCode = `
 let
   apple = if true then 123 else 456;
   banana = 456;
-in apple + banana
+in {
+  inherit apple banana;
+}
 `;
 
 const tree = parser.parse(sourceCode);
@@ -20,7 +22,8 @@ function nodeToObject(node) {
   return {
     type: node.type,
     childCount: node.children.length,
-    children: node.children.map(x => nodeToObject(x))
+    children: node.children.map(x => nodeToObject(x)),
+    isNamed: node.isNamed
   };
 }
 
@@ -52,4 +55,7 @@ console.log(JSON.stringify(result, 0, 2));
 //                 {
 //                   // ... continued
 
-module.exports = tree;
+module.exports = {
+  tree,
+  result
+};
