@@ -6,7 +6,7 @@ parser.setLanguage(Nix);
 
 const sourceCode = `
 let
-  apple = 123;
+  apple = if true then 123 else 456;
   banana = 456;
 in apple + banana
 `;
