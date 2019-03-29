@@ -19,11 +19,11 @@ console.log("what is the actual content?");
 console.log(tree.rootNode.toString());
 
 function nodeToObject(node) {
+  const namedChildren = node.children.filter(x => x.isNamed);
   return {
     type: node.type,
-    childCount: node.children.length,
-    children: node.children.map(x => nodeToObject(x)),
-    isNamed: node.isNamed
+    childCount: namedChildren.length,
+    children: namedChildren.map(x => nodeToObject(x))
   };
 }
 
