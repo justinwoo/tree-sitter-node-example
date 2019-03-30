@@ -22,6 +22,8 @@ function nodeToObject(node) {
   const namedChildren = node.children.filter(x => x.isNamed);
   return {
     type: node.type,
+    // rawChildCount: node.children.length,
+    // rawChildren: node.children.map(x => nodeToObject(x)),
     childCount: namedChildren.length,
     children: namedChildren.map(x => nodeToObject(x))
   };
@@ -30,30 +32,6 @@ function nodeToObject(node) {
 var result = nodeToObject(tree.rootNode);
 
 console.log(JSON.stringify(result, 0, 2));
-
-// {
-//   "type": "expression",
-//   "childCount": 1,
-//   "children": [
-//     {
-//       "type": "let",           // let-in expression
-//       "childCount": 4,
-//       "children": [
-//         {
-//           "type": "let",       // let literal
-//           "childCount": 0,
-//           "children": []
-//         },
-//         {
-//           "type": "binds",
-//           "childCount": 2,
-//           "children": [
-//             {
-//               "type": "bind",
-//               "childCount": 4,
-//               "children": [
-//                 {
-//                   // ... continued
 
 module.exports = {
   tree,
